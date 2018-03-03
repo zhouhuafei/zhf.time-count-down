@@ -1,12 +1,9 @@
 'use strict';
 
-/**
- * @description json转数组
- * @param {Object} json - json格式的对象{}
- * */
 var extend = require('zhf.extend');
 var secondsToTime = require('zhf.seconds-to-time');
 
+// 倒计时
 function timeCountDown(json) {
     var opts = extend({
         seconds: 0,
