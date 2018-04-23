@@ -35,7 +35,7 @@ function timeCountDown(json) {
         // 倒计时走你
         const timer = setInterval(function () {
             seconds--;
-            if (seconds < 0) {
+            if (seconds <= 0) { // 这里如果是小于0，就会存在1秒的误差，这里如果等于0，则0会展示不出来，展示不出来就展示不出来吧，没啥问题。
                 clearInterval(timer); // 清除定时器
                 over(); // 结束时的回调
             } else {

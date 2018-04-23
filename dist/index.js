@@ -37,10 +37,15 @@ function timeCountDown(json) {
         // 倒计时走你
         var timer = setInterval(function () {
             seconds--;
-            if (seconds < 0) {
+            if (seconds <= 0) {
+                // 这里如果是小于0，就会存在1秒的误差，这里如果等于0，则0会展示不出来，展示不出来就展示不出来吧，没啥问题。
                 clearInterval(timer); // 清除定时器
                 over(); // 结束时的回调
             } else {
+                /*
+                * 这里会有一秒的误差，是为了把0秒展示出来停留一秒钟，再过1秒后才结束。
+                * 如果想要非常精确，则需要等于0的时候，先运行次runFn，然后清除定时器，然后结束回调。
+                * */
                 runFn(); // 运行时的回调
             }
         }, 1000);
