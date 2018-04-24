@@ -6,7 +6,8 @@ function timeCountDown(json) {
     const opts = extend({
         seconds: 0,
         isToTime: true, // 是否转换成时间
-        isHandleRunWhenZero: false, // 是否运行run回调，当传入的秒数为0
+        isHandleRunWhenZero: true, // 是否运行run回调，当传入的秒数为0
+        isHandleRunWhenOver: true, // 是否运行run回调，当倒计时结束的瞬间
         callback: {
             run: function () {
             },
@@ -35,8 +36,11 @@ function timeCountDown(json) {
         // 倒计时走你
         const timer = setInterval(function () {
             seconds--;
-            if (seconds <= 0) { // 这里如果是小于0，就会存在1秒的误差，这里如果等于0，则0会展示不出来，展示不出来就展示不出来吧，没啥问题。
+            if (seconds === 0) { // 这里如果是小于0，就会存在1秒的误差。这里如果是等于0，则0会展示不出来。
                 clearInterval(timer); // 清除定时器
+                if (opts.isHandleRunWhenOver) { // 等于0，则0会展示不出来，为了能让0展示出来一瞬间，这里处理了一下。
+                    runFn(); // 运行时的回调
+                }
                 over(); // 结束时的回调
             } else {
                 /*
