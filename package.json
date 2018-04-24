@@ -7,7 +7,8 @@
         "codeLint": "eslint --ext .js,.vue,.html ./",
         "codeFix": "eslint --fix --ext .js,.vue,.html ./",
         "gulp": "gulp",
-        "test": "jest"
+        "test": "jest",
+        "precommit": "npm run codeLint && npm run test"
     },
     "repository": {
         "type": "git",
@@ -33,6 +34,7 @@
         "gulp-babel": "^7.0.0",
         "gulp-rename": "^1.2.2",
         "gulp-uglify": "^3.0.0",
+        "husky": "^0.14.3",
         "jest": "^22.1.1"
     },
     "dependencies": {
