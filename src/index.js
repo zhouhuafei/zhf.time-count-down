@@ -6,8 +6,8 @@ function timeCountDown(json) {
     const opts = extend({
         seconds: 0,
         isToTime: true, // 是否转换成时间
-        isHandleRunWhenZero: true, // 是否运行run回调，当传入的秒数为0
-        isHandleRunWhenOver: true, // 是否运行run回调，当倒计时结束的瞬间
+        isHandleRunWhenZero: false, // 是否运行run回调，当传入的秒数为0
+        isHandleRunWhenOver: false, // 是否运行run回调，当倒计时结束的瞬间
         callback: {
             run: function () {
             },
@@ -16,6 +16,13 @@ function timeCountDown(json) {
         },
     }, json);
     let seconds = opts.seconds; // 秒数
+    /*
+    本来想处理一下秒数，当传入的是负数和不能被转成数字的参数时，让秒数为0的，因为可以运行run，格式化下dom。
+    但是，如果用户不想0秒之后(-1秒)结束回调，而是0秒瞬间(1秒之后)就结束回调。
+    那么他可能会在run的回调里处理，而不是在over里进行结束回调的处理（因为over其实是秒数走到-1，是为了把0秒展示出来一秒）。
+    例如倒计时走完刷新页面，如果他在run回调里判断为0瞬间刷新页面，如果我做了负数转0的处理，则这个页面会一直刷新。
+    很多视频和倒计时都是00:00:00瞬间静止，并一秒之后消失，所以根据用户习惯，还是保留00:00:00展示一秒钟之后，正式触发结束回调。
+    */
     const allSeconds = seconds; // 总秒数
     const run = opts.callback.run; // 运行的回调
     const over = opts.callback.over; // 结束的回调
@@ -26,12 +33,12 @@ function timeCountDown(json) {
             run({day: 0, hours: 0, minutes: 0, seconds: seconds, allSeconds: allSeconds}); // 运行时的回调
         }
     };
-    if (Number(seconds) === 0) {
+    if (Number(seconds) === 0) { // 这里是为了格式化一下dom里的00:00:00，其实如果上来就是0秒，应该按照结束处理了，dom应该不展示了，应该展示活动已结束之类的文案。
         if (opts.isHandleRunWhenZero) {
             runFn(); // 运行时的回调
         }
     }
-    if (seconds > 0) { // 时间大于0秒
+    if (seconds > 0) { // 时间大于0秒，等于0不让传入，是因为有个后端给值时，倒计时结束了值居然一直是0。而结束回调里做了刷新页面处理，导致一直刷新页面
         runFn(); // 运行时的回调
         // 倒计时走你
         const timer = setInterval(function () {
