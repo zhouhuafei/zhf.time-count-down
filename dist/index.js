@@ -15,7 +15,10 @@ function timeCountDown(json) {
             over: function over() {}
         }
     }, json);
-    var seconds = opts.seconds; // 秒数
+    var seconds = Number(opts.seconds) || 0; // 秒数
+    if (seconds < 0) {
+        seconds = 0;
+    }
     var allSeconds = seconds; // 总秒数
     var run = opts.callback.run; // 运行的回调
     var over = opts.callback.over; // 结束的回调
