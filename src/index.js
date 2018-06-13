@@ -29,7 +29,7 @@ function timeCountDown(json) {
             run({day: 0, hours: 0, minutes: 0, seconds: seconds, allSeconds: allSeconds}); // 运行时的回调
         }
     };
-    if (Number(seconds) === 0) { // 传入秒数为0时，是否触发一次运行时的回调
+    if (seconds === 0) { // 传入秒数为0时，是否触发一次运行时的回调
         if (opts.isHandleRunWhenZero) {
             runFn(); // 运行时的回调
         }
