@@ -54,8 +54,8 @@ function timeCountDown(json) {
             }
         }, 1000);
     } else {
-        // 时间小于0秒
-        console.log('倒计时的秒数不能小于0');
+        // 时间小于等于0秒
+        console.log('倒计时的秒数不能小于等于0');
     }
 }
 
