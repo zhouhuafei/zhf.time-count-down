@@ -7,6 +7,7 @@ function timeCountDown(json) {
         seconds: 0,
         isToTime: true, // 是否转换成时间
         isHandleRunWhenZero: false, // 是否运行run回调，当传入的秒数为0
+        isHandleOverWhenZero: false, // 是否运行over回调，当传入的秒数为0
         isHandleRunWhenOver: false, // 是否运行run回调，当倒计时结束的瞬间
         callback: {
             run: function () {
@@ -32,6 +33,9 @@ function timeCountDown(json) {
     if (seconds === 0) { // 传入秒数为0时，是否触发一次运行时的回调
         if (opts.isHandleRunWhenZero) {
             runFn(); // 运行时的回调
+        }
+        if (opts.isHandleOverWhenZero) {
+            over(); // 运行时的回调
         }
     }
     if (seconds > 0) { // 时间大于0秒，因为0秒瞬间倒计时就已经结束了。
