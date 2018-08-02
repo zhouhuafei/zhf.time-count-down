@@ -1,6 +1,6 @@
 {
     "name": "zhf.time-count-down",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "description": "倒计时",
     "main": "dist/index.min.js",
     "scripts": {
