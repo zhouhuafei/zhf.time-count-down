@@ -8,8 +8,8 @@ test(`倒计时`, () => {
             run: function (json) {
                 console.log(json);
             },
-            over: function (json) {
-                console.log(json);
+            over: function () {
+                console.log('倒计时结束');
             },
         },
     });
