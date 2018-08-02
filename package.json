@@ -7,7 +7,7 @@
         "codeLint": "eslint --ext .js,.vue,.html ./",
         "codeFix": "eslint --fix --ext .js,.vue,.html ./",
         "gulp": "gulp",
-        "test": "jest",
+        "test": "jest --env=node",
         "precommit": "npm run codeLint && npm run test"
     },
     "repository": {
@@ -40,9 +40,5 @@
     "dependencies": {
         "zhf.extend": "^2.0.2",
         "zhf.seconds-to-time": "^1.0.1"
-    },
-    "jest": {
-        "verbose": true,
-        "testURL": "http://localhost/"
     }
 }
