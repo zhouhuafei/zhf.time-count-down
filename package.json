@@ -40,5 +40,9 @@
     "dependencies": {
         "zhf.extend": "^2.0.2",
         "zhf.seconds-to-time": "^1.0.1"
+    },
+    "jest": {
+        "verbose": true,
+        "testURL": "http://localhost/"
     }
 }
