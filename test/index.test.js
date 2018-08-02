@@ -13,5 +13,6 @@ test(`倒计时`, () => {
             },
         },
     });
+    console.log(document.body);
     expect(true).toEqual(true);
 });
