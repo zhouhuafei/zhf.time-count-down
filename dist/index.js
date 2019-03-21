@@ -28,7 +28,7 @@ function timeCountDown(json) {
         if (opts.isToTime) {
             run(secondsToTime(seconds)); // 运行时的回调
         } else {
-            run({ day: 0, hours: 0, minutes: 0, seconds: 0, allSeconds: seconds }); // 运行时的回调
+            run({ day: 0, hours: 0, dayMergeToHours: 0, minutes: 0, seconds: 0, allSeconds: seconds }); // 运行时的回调
         }
     };
     if (seconds === 0) {
@@ -57,6 +57,7 @@ function timeCountDown(json) {
                 runFn(); // 运行时的回调
             }
         }, 1000);
+        timeCountDown.timer = timer;
     }
 }
 
